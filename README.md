@@ -68,3 +68,4 @@ Esto hace dos cosas:
 web/
 └── main.py   # Versión async/await del juego, con controles táctiles, compatible con Pygbag y con "python main.py" normal
 ```
+# batalla_espacial
