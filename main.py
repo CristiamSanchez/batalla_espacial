@@ -200,6 +200,15 @@ def detectar_boton_tactil(posicion, botones):
     return None
 
 
+def obtener_posicion_tactil(evento):
+    """Devuelve la posición lógica de un toque o clic, si corresponde."""
+    if evento.type == pygame.FINGERDOWN:
+        return (evento.x * ANCHO, evento.y * ALTO)
+    if evento.type == pygame.MOUSEBUTTONDOWN:
+        return evento.pos
+    return None
+
+
 def dibujar_controles_tactiles(superficie, botones, activos):
     """Dibuja el D-pad y el botón de disparo semitransparentes sobre la pantalla.
     Los botones presionados se resaltan con más opacidad para dar feedback visual."""
@@ -603,6 +612,16 @@ async def pantalla_seleccion_dificultad():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            posicion_tactil = obtener_posicion_tactil(evento)
+            if posicion_tactil is not None:
+                x, y = posicion_tactil
+                if 240 <= y <= 500:
+                    if x < ANCHO // 3:
+                        indice = (indice - 1) % len(opciones)
+                    elif x > ANCHO * 2 // 3:
+                        indice = (indice + 1) % len(opciones)
+                    else:
+                        esperando = False
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_LEFT:
                     indice = (indice - 1) % len(opciones)
@@ -650,6 +669,8 @@ async def pantalla_inicio():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if obtener_posicion_tactil(evento) is not None:
+                esperando = False
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
                     esperando = False
@@ -680,6 +701,8 @@ async def pantalla_game_over(puntuacion):
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if obtener_posicion_tactil(evento) is not None:
+                esperando = False
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
                     esperando = False

@@ -27,6 +27,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python batalla_espacial.py
+```
 
 ## 🕹️ Controles
 
@@ -36,6 +37,15 @@ python batalla_espacial.py
 | `ESPACIO`             | Disparar láser                       |
 | `ENTER`               | Confirmar / iniciar / reiniciar      |
 | `ESC`                 | Salir del juego                      |
+
+### Desde un celular
+
+En GitHub Pages no necesitas abrir un teclado virtual. Toca la pantalla de
+inicio para continuar; en la selección de dificultad toca el lado izquierdo o
+derecho para cambiar y el centro para confirmar. Durante la partida usa el
+D-pad de la esquina inferior izquierda para mover la nave y el botón `TIRO` de
+la esquina inferior derecha para disparar. En `GAME OVER`, toca la pantalla
+para reiniciar.
 
 ## 📦 Requisitos
 
@@ -109,7 +119,16 @@ PyGame/
 
 ## 🌐 ¿Se puede jugar desde el navegador?
 
-Sí. Hay una versión adaptada con [Pygbag](https://github.com/pygame-web/pygbag) (compila el mismo código Python a WebAssembly) en la carpeta hermana `../web/`. Ahí encontrarás un `README.md` con los pasos para compilarla y publicarla en GitHub Pages.
+Sí. La carpeta `web/` contiene la versión adaptada con
+[Pygbag](https://github.com/pygame-web/pygbag), que compila el juego a
+WebAssembly. La carpeta `docs/` contiene los archivos que se publican en
+GitHub Pages.
+
+El archivo `main.py` no se puede abrir directamente desde el navegador del
+celular: necesita Python y Pygame instalados. Para jugar en el celular, usa la
+versión publicada en GitHub Pages. Para ejecutarlo localmente en Android
+necesitarías una aplicación compatible con Python y Pygame, como Pydroid 3,
+además de instalar las dependencias del proyecto.
 
 ## 🛠️ Posibles mejoras futuras
 
